@@ -4,6 +4,7 @@ import { IoCart } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { useCart } from "./CartContext";
+import { Link } from "react-router-dom";
 
 import imgone from "../src/assets/img/HJ.png";
 
@@ -27,10 +28,9 @@ const Navbar = () => {
         
         <div className="flex items-center gap-4 md:gap-8 flex-1 mx-4">
           <ul className="hidden md:flex gap-6 text-white font-medium whitespace-nowrap">
-            <li className="cursor-pointer hover:text-yellow-300" onClick={() => navigate("/dashboard")}>Home</li>
-            <li className="cursor-pointer hover:text-yellow-300">About</li>
-            <li className="cursor-pointer hover:text-yellow-300">Contact</li>
-            <li className="cursor-pointer hover:text-yellow-300">Services</li>
+           <li><Link to="/dashboard" className="cursor-pointer hover:text-yellow-300" style={{ textDecoration: 'none', color: 'inherit' }}>Home</Link></li>
+           <li><Link to="/about" className="cursor-pointer hover:text-yellow-300" style={{ textDecoration: 'none', color: 'inherit' }}>About</Link></li>
+           <li><Link to="/contact" className="cursor-pointer hover:text-yellow-300" style={{ textDecoration: 'none', color: 'inherit' }}>Contact</Link></li>
           </ul>
 
           <div className="flex items-center bg-white rounded shadow-md overflow-hidden w-full md:w-[515px] min-w-0">
@@ -79,14 +79,24 @@ const Navbar = () => {
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden bg-white p-4 shadow-lg flex flex-col gap-4 text-black font-medium border-t">
-            <p className="cursor-pointer" onClick={() => { navigate("/dashboard"); setMenuOpen(false); }}>Home</p>
-            <p className="cursor-pointer">About</p>
-            <p className="cursor-pointer">Contact</p>
-            <div className="flex gap-2">
-              <button onClick={() => navigate("/")} className="bg-yellow-400 p-2 rounded flex-1 font-bold">Sign In</button>
-              <button onClick={handleLogout} className="bg-yellow-400 p-2 rounded flex-1 font-bold">Logout</button>
+        <div className="fixed inset-0 top-0 left-0 w-screen h-screen md:hidden z-50 flex justify-end">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMenuOpen(false)}></div>
+          
+          <div className="relative w-[280px] h-full bg-white p-6 shadow-2xl flex flex-col gap-6 text-black font-semibold border-l border-gray-100">
+            <div className="flex justify-between items-center border-b pb-4">
+              <span className="text-xl font-bold tracking-wide text-black">MENU</span>
+              <RxCross2 size={24} className="cursor-pointer text-gray-600" onClick={() => setMenuOpen(false)} />
             </div>
+
+            <p className="cursor-pointer text-lg hover:text-yellow-600 transition" onClick={() => { navigate("/dashboard"); setMenuOpen(false); }}>Home</p>
+            <p className="cursor-pointer text-lg hover:text-yellow-600 transition" onClick={() => { navigate("/about"); setMenuOpen(false); }}>About</p>
+            <p className="cursor-pointer text-lg hover:text-yellow-600 transition" onClick={() => { navigate("/contact"); setMenuOpen(false); }}>Contact</p>
+            
+            <div className="flex flex-col gap-3 mt-auto mb-10">
+              <button onClick={() => { navigate("/"); setMenuOpen(false); }} className="bg-yellow-400 py-3 rounded-xl font-bold hover:bg-yellow-500 transition shadow-md w-full text-black">Sign In</button>
+              <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="bg-yellow-400 py-3 rounded-xl font-bold hover:bg-yellow-500 transition shadow-md w-full text-black">Logout</button>
+            </div>
+          </div>
         </div>
       )}
     </div>

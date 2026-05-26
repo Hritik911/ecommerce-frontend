@@ -13,6 +13,8 @@ import { Toaster } from "react-hot-toast";
 import CartPage from "./CartPage";
 import CheckoutPage from "./CheckoutPage";
 import MyOrders from "./MyOrders";
+import About from "./About";
+import Contact from "./Contact";
 
 function AppRoute(){
     return(
@@ -33,6 +35,8 @@ function AppRoute(){
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/myOrders" element={<MyOrders />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
                 </Routes>
             </BrowserRouter>
         </CartProvider>

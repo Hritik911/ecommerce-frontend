@@ -9,6 +9,7 @@ import ListProduct from "./ProductList";
 import BannerSlider from "./Banner";
 import Footer from "./Footer";
 import { useCart } from "./CartContext";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -101,10 +102,10 @@ const Dashboard = () => {
         />
 
         <div className="flex items-center gap-4 md:gap-8 flex-1 mx-4">
-          <ul className="hidden md:flex gap-6 text-white font-medium">
-            <li className="cursor-pointer hover:text-yellow-300" onClick={() => navigate("/dashboard")}>Home</li>
-            <li className="cursor-pointer hover:text-yellow-300">About</li>
-            <li className="cursor-pointer hover:text-yellow-300">Contact</li>
+          <ul className="hidden md:flex gap-6 text-white font-medium whitespace-nowrap">
+           <li><Link to="/dashboard" className="cursor-pointer hover:text-yellow-300" style={{ textDecoration: 'none', color: 'inherit' }}>Home</Link></li>
+           <li><Link to="/about" className="cursor-pointer hover:text-yellow-300" style={{ textDecoration: 'none', color: 'inherit' }}>About</Link></li>
+           <li><Link to="/contact" className="cursor-pointer hover:text-yellow-300" style={{ textDecoration: 'none', color: 'inherit' }}>Contact</Link></li>
           </ul>
 
           <form onSubmit={handleSearch} className="flex items-center bg-white rounded shadow-md overflow-hidden w-full md:w-[515px]">
