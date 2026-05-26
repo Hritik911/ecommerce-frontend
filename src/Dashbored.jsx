@@ -165,32 +165,36 @@ const Dashboard = () => {
 
       <div className="max-w-[1500px] mx-auto px-4 md:px-8 mt-10 mb-20 flex flex-col md:flex-row justify-center items-start gap-6 lg:gap-10">
         {[
-          { title: "Video Games", data: games, color: "border-purple-600" },
-          { title: "Best Selling Books", data: books, color: "border-blue-600" },
-          { title: "Latest Electronics", data: electronics, color: "border-yellow-500" },
+          { title: "Video Games", urlSlug: "videogames", data: games, color: "border-purple-600" },
+          { title: "Best Selling Books", urlSlug: "books", data: books, color: "border-blue-600" },
+          { title: "Latest Electronics", urlSlug: "electronics", data: electronics, color: "border-yellow-500" },
         ].map((cat) =>
           cat.data.length > 0 && (
             <section key={cat.title} className="w-full md:flex-1 bg-white p-5 md:p-8 rounded-[2.5rem] shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-500">
               <div className="flex justify-between items-center mb-8">
-                <h2 className={`text-xl md:text-2xl font-black border-l-8 ${cat.color} pl-4 uppercase tracking-tighter text-gray-900`}>
-                  {cat.title}
-                </h2>
+                <Link to={`/category/${cat.urlSlug}`} style={{ textDecoration: 'none' }}>
+                  <h2 className={`text-xl md:text-2xl font-black border-l-8 ${cat.color} pl-4 uppercase tracking-tighter text-gray-900 cursor-pointer hover:text-blue-600 transition-colors`}>
+                    {cat.title}
+                  </h2>
+                </Link>
                 <span className="text-[10px] bg-gray-100 px-3 py-1 rounded-full font-bold text-gray-500 uppercase">Top 3</span>
               </div>
 
               <div className="flex md:flex-col gap-6 overflow-x-auto md:overflow-visible no-scrollbar pb-6 md:pb-0">
                 {cat.data.slice(0, 3).map((item) => (
-                  <div key={item._id} className="bg-gray-50 p-4 md:p-6 rounded-[2rem] border border-transparent hover:border-blue-200 min-w-[220px] md:min-w-0 w-full flex-shrink-0 md:flex flex flex-col items-center group cursor-pointer transition-all">
-                    <div className="bg-white rounded-[1.5rem] w-full aspect-square flex items-center justify-center overflow-hidden shadow-sm mb-5">
-                      <img src={item.image} className="h-40 md:h-56 w-full object-contain group-hover:scale-110 transition-transform duration-700 p-4" alt={item.name} />
+                  <Link to={`/category/${cat.urlSlug}`} key={item._id} style={{ textDecoration: 'none', color: 'inherit' }} className="w-full flex-shrink-0 md:flex-shrink">
+                    <div className="bg-gray-50 p-4 md:p-6 rounded-[2rem] border border-transparent hover:border-blue-200 min-w-[220px] md:min-w-0 w-full flex flex-col items-center group cursor-pointer transition-all">
+                      <div className="bg-white rounded-[1.5rem] w-full aspect-square flex items-center justify-center overflow-hidden shadow-sm mb-5">
+                        <img src={item.image} className="h-40 md:h-56 w-full object-contain group-hover:scale-110 transition-transform duration-700 p-4" alt={item.name} />
+                      </div>
+                      <div className="text-center w-full">
+                        <p className="text-sm md:text-lg font-extrabold text-gray-800 truncate px-2 group-hover:text-blue-600 transition-colors">{item.name}</p>
+                        <button className="mt-4 w-full py-3 bg-white border-2 border-gray-900 text-gray-900 rounded-xl text-xs font-black uppercase hover:bg-gray-900 hover:text-white transition-all">
+                          View Now
+                        </button>
+                      </div>
                     </div>
-                    <div className="text-center w-full">
-                      <p className="text-sm md:text-lg font-extrabold text-gray-800 truncate px-2 group-hover:text-blue-600 transition-colors">{item.name}</p>
-                      <button className="mt-4 w-full py-3 bg-white border-2 border-gray-900 text-gray-900 rounded-xl text-xs font-black uppercase hover:bg-gray-900 hover:text-white transition-all">
-                        View Now
-                      </button>
-                    </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </section>

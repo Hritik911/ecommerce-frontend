@@ -200,7 +200,7 @@ const CategoryPage = () => {
             ) : (
               <div className="text-center py-32 px-4">
                 <h2 className="text-3xl md:text-5xl font-black text-gray-200 uppercase italic">No Results Found</h2>
-                <button onClick={() => navigate('/')} className="mt-6 text-blue-600 font-bold underline">Go back home</button>
+                <button onClick={() => navigate('/dashboard')} className="mt-6 text-blue-600 font-bold underline">Go back home</button>
               </div>
             )}
           </div>
