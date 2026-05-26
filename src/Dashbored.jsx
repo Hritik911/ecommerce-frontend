@@ -21,7 +21,6 @@ const Dashboard = () => {
   const { cartCount } = useCart();
   const navigate = useNavigate();
 
-
   const BACKEND_URL = "https://ecommerce-backend-g2g1.onrender.com";
 
   useEffect(() => {
@@ -34,7 +33,6 @@ const Dashboard = () => {
           return;
         }
 
-        
         const userRes = await axios.get(
           `${BACKEND_URL}/api/users/profile`,
           {
@@ -45,13 +43,11 @@ const Dashboard = () => {
         );
         setUser(userRes.data);
 
-        
         const bannerRes = await axios.get(
           `${BACKEND_URL}/api/users/all-banners`
         );
         setBanners(bannerRes.data);
 
-        
         const productRes = await axios.get(
           `${BACKEND_URL}/api/users/all-products`
         );
@@ -70,7 +66,6 @@ const Dashboard = () => {
     fetchData();
   }, [navigate]);
 
-  
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
@@ -78,13 +73,11 @@ const Dashboard = () => {
     }
   };
 
-  
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
 
-  
   const games = products.filter((p) => p.category?.trim() === "Games");
   const books = products.filter((p) => p.category?.trim() === "Books");
   const electronics = products.filter((p) => p.category?.trim() === "Electronics");
@@ -92,7 +85,6 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden pt-20 md:pt-24">
 
-      
       <nav className="fixed top-0 left-0 w-full bg-gradient-to-r from-[#e9b7ce] to-[#d3f3f1] text-white p-4 flex justify-between items-center shadow-md z-[1000]">
         <img
           src={imgone}
@@ -146,30 +138,31 @@ const Dashboard = () => {
         </div>
       </nav>
 
-    
-      <div className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[1010] transition-opacity duration-300 ${menuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`} onClick={() => setMenuOpen(false)}></div>
-      
-      <div className={`fixed top-0 right-0 h-full w-[65%] max-w-[300px] bg-white z-[1020] shadow-2xl transform transition-transform duration-500 ease-in-out p-6 flex flex-col ${menuOpen ? "translate-x-0" : "translate-x-full"}`}>
-        <div className="flex justify-between items-center mb-10">
-          <h2 className="text-black font-black text-xl uppercase tracking-widest">Menu</h2>
-          <RxCross2 size={30} className="text-black cursor-pointer" onClick={() => setMenuOpen(false)} />
+      {menuOpen && (
+        <div className="fixed inset-0 w-screen h-screen md:hidden z-[1010] flex justify-end">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMenuOpen(false)}></div>
+          
+          <div className="relative w-[280px] h-full bg-white p-6 shadow-2xl flex flex-col gap-6 text-black font-semibold border-l border-gray-100 z-[1020]">
+            <div className="flex justify-between items-center border-b pb-4">
+              <span className="text-xl font-bold tracking-wide text-black">Menu</span>
+              <RxCross2 size={30} className="text-black cursor-pointer" onClick={() => setMenuOpen(false)} />
+            </div>
+            <ul className="flex flex-col gap-6 text-gray-800 font-bold text-lg">
+              <li className="hover:text-blue-600 cursor-pointer" onClick={() => { navigate("/dashboard"); setMenuOpen(false); }}>Home</li>
+              <li className="hover:text-blue-600 cursor-pointer" onClick={() => { navigate("/about"); setMenuOpen(false); }}>About</li>
+              <li className="hover:text-blue-600 cursor-pointer" onClick={() => { navigate("/contact"); setMenuOpen(false); }}>Contact</li>
+            </ul>
+            <div className="mt-auto flex flex-col gap-4">
+              <button onClick={() => { navigate("/"); setMenuOpen(false); }} className="w-full bg-yellow-400 p-4 rounded-2xl text-black font-black uppercase text-sm tracking-widest shadow-lg">Sign In</button>
+              <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="w-full bg-gray-900 p-4 rounded-2xl text-white font-black uppercase text-sm tracking-widest">Logout</button>
+            </div>
+          </div>
         </div>
-        <ul className="flex flex-col gap-6 text-gray-800 font-bold text-lg">
-          <li className="hover:text-blue-600 cursor-pointer" onClick={() => { navigate("/dashboard"); setMenuOpen(false); }}>Home</li>
-          <li className="hover:text-blue-600 cursor-pointer" onClick={() => setMenuOpen(false)}>About</li>
-          <li className="hover:text-blue-600 cursor-pointer" onClick={() => setMenuOpen(false)}>Contact</li>
-        </ul>
-        <div className="mt-auto flex flex-col gap-4">
-          <button onClick={() => { navigate("/"); setMenuOpen(false); }} className="w-full bg-yellow-400 p-4 rounded-2xl text-black font-black uppercase text-sm tracking-widest shadow-lg">Sign In</button>
-          <button onClick={() => { handleLogout(); setMenuOpen(false); }} className="w-full bg-gray-900 p-4 rounded-2xl text-white font-black uppercase text-sm tracking-widest">Logout</button>
-        </div>
-      </div>
+      )}
 
-      
       <ListProduct />
       <BannerSlider banners={banners} />
 
-      
       <div className="max-w-[1500px] mx-auto px-4 md:px-8 mt-10 mb-20 flex flex-col md:flex-row justify-center items-start gap-6 lg:gap-10">
         {[
           { title: "Video Games", data: games, color: "border-purple-600" },

@@ -11,7 +11,7 @@ const About = () => {
         </h1>
         
         <p style={{ fontSize: '18px', textAlign: 'center', color: '#666', marginBottom: '40px' }}>
-          Welcome to <strong>ShopEasy</strong>, your number one source for all things. We're dedicated to giving you the very best of products, with a focus on dependability, customer service, and uniqueness.
+          Welcome to <strong>HJCart</strong>, your number one source for all things. We're dedicated to giving you the very best of products, with a focus on dependability, customer service, and uniqueness.
         </p>
 
         <hr style={{ border: '0', height: '1px', background: '#eee', margin: '30px 0' }} />
