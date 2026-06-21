@@ -26,12 +26,12 @@ const CategoryPage = () => {
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get("q");
 
-  // Aapka Live Backend URL
+  
   const BACKEND_URL = "https://ecommerce-backend-g2g1.onrender.com";
 
-  // Helper function to handle image URLs
+  
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return "https://via.placeholder.com/300"; 
+    if (!imagePath) return "https://via.placeholder.com/300";
     if (imagePath.startsWith("http")) {
       return imagePath;
     }
@@ -57,10 +57,10 @@ const CategoryPage = () => {
         } else if (categoryName) {
           const currentUrlCat = categoryName.trim().toLowerCase();
           filtered = res.data.filter((item) => {
-            const dbCategory = item.category ? item.category.toString().trim().toLowerCase() : "";
-            return dbCategory === currentUrlCat;
-          });
-        }
+          const dbCategory = item.category ? item.category.toString().trim().toLowerCase() : "";
+          return dbCategory === currentUrlCat;
+        });
+      }
         setProducts(filtered);
         setLoading(false);
       } catch (err) {

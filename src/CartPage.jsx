@@ -98,7 +98,7 @@ const CartPage = () => {
       
       <div className="max-w-[1200px] mx-auto px-4 py-8">
         
-        {/* Optimized Header Section */}
+        
         <div className="flex items-center justify-between mb-10">
           <button 
             onClick={() => navigate(-1)} 
@@ -123,7 +123,7 @@ const CartPage = () => {
         {cartItems.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            {/* Cart Items List */}
+            
             <div className="lg:col-span-2 space-y-4">
               {cartItems.map((item) => (
                 <div 
@@ -173,7 +173,7 @@ const CartPage = () => {
               ))}
             </div>
 
-            {/* Summary Section */}
+            
             <div className="lg:col-span-1">
               <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 sticky top-28">
                 <h2 className="text-xl font-black mb-6 uppercase tracking-widest text-gray-800">Order Summary</h2>

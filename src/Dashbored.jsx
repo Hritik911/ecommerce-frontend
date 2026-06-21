@@ -165,7 +165,7 @@ const Dashboard = () => {
 
       <div className="max-w-[1500px] mx-auto px-4 md:px-8 mt-10 mb-20 flex flex-col md:flex-row justify-center items-start gap-6 lg:gap-10">
         {[
-          { title: "Video Games", urlSlug: "videogames", data: games, color: "border-purple-600" },
+          { title: "Video Games", urlSlug: "games", data: games, color: "border-purple-600" },
           { title: "Best Selling Books", urlSlug: "books", data: books, color: "border-blue-600" },
           { title: "Latest Electronics", urlSlug: "electronics", data: electronics, color: "border-yellow-500" },
         ].map((cat) =>
